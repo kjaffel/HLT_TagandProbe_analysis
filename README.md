@@ -1,9 +1,10 @@
 # ULegacy Tag and Probe HLT Analysis : 
-# Package of the EGamma and Muon groups to produce ULegacy Tag-and-Probe trees
+
+Package of the EGamma and Muon groups to produce ULegacy Tag-and-Probe trees.
 This repositry is meant only to produce dilepton and single trigger scale factors for full run2 Ulegcay compaign.
 
 ## EGamma HLT Scale Factor Measurements :
-### To produce tuples :
+### To produce TnP ntuples :
 ``CMSSW_10_6`` can only be used for ultra-legacy samples, and ``CMSSW_10_2`` should be used for the rereco samples.
 1. Install for ultra-legacy :
 ```bash
