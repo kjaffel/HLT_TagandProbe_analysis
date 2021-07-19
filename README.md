@@ -54,8 +54,9 @@ Another option is to use the root files available for 2016, 2017 and 2018 Ulegac
 /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions1*/13TeV/PileUp/UltraLegacy/PileupHistogram-goldenJSON-13tev***/*.root
 ```
 ### Trouble shooting:
-1. There was an update in scram to prevent executing arbitrary code in makefile fragments. [See details](https://indico.cern.ch/event/1058840/contributions/4450329/attachments/2281171/3875942/CMSSDT-CoreSW-210713.pdf) 
-If you face such an error ; 
+1. There was an update in scram to prevent executing arbitrary code in makefile fragments, [see details](https://indico.cern.ch/event/1058840/contributions/4450329/attachments/2281171/3875942/CMSSDT-CoreSW-210713.pdf). 
+
+If you face such an error: 
 ```bash
 $ scram b -j8
 Reading cached build data
