@@ -2,6 +2,9 @@
 
 Package of the EGamma and Muon groups to produce ULegacy Tag-and-Probe trees.
 This repositry is meant only to produce dilepton and single trigger scale factors for full run2 Ulegcay compaign.
+- [EgammaAnalysis-TnPTreeProducer ](https://github.com/kjaffel/EgammaAnalysis-TnPTreeProducer) WIP ...
+    * [Plotting](https://github.com/kjaffel/egm_tnp_analysis)
+- [MuonAnalysis-TagAndProbe](https://github.com/kjaffel/MuonAnalysis-TagAndProbe) WIP ... 
 
 ## EGamma HLT Scale Factor Measurements :
 ### To produce TnP ntuples :
@@ -11,7 +14,7 @@ This repositry is meant only to produce dilepton and single trigger scale factor
 cmsrel CMSSW_10_6_13
 cd CMSSW_10_6_13/src
 cmsenv
-git clone -b RunIIfinal https://github.com/tomcornelis/EgammaAnalysis-TnPTreeProducer EgammaAnalysis/TnPTreeProducer
+git clone -b master git@github.com:kjaffel/EgammaAnalysis-TnPTreeProducer.git EgammaAnalysis/TnPTreeProducer
 scram b -j8
 ```
 2. Try-out:
@@ -38,7 +41,7 @@ More options :
 - ``--addAll``: hadd file in any status (default false: only finished).
 - ``--dry_run``: do not hadd, just test.
 
-### Event and PU Weight (for 106X):
+### To Pass Event and PU Weight (for 106X):
 Event weights are handled automatically by the package and you don't need anymore to use additional scripts. Few simple steps are needed instead to include data PU distribution before you start running the ntuplization step. Following the list to command to be issue:
 1. Create Pileup Histograms based on the Golden JSON: Example for 2017 ULegacy:
 ```bash
@@ -48,11 +51,21 @@ pileupCalc.py -i /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions1
 ```python
 python Utilities/dumpPileup.py  PileupHistogram-goldenJSON-13tev-2017-69200ub-99bins.root
 ```
-Copy the lines printed out by the last script [here](): If you want you can also add a new line to the dictionary choosing a different key and then changing accordingly the call to the proper dictionary item.
-Another option is to use the root files available for 2016, 2017 and 2018 Ulegacy collisions with Nominal / Up and Down variations (99 bins):
+Copy the lines printed out by the last script [python/pileupConfiguration_cff.py](https://github.com/kjaffel/EgammaAnalysis-TnPTreeProducer/blob/master/python/pileupConfiguration_cff.py#L12)by adding a new line to the dictionary choosing a different key and then changing accordingly the call to the proper dictionary item.
+Another option is to use the root files available for 2016, 2017 and 2018 Ulegacy collisions with Nominal / Up and Down variations (99 bins) so you don't have to run step1. of ``pileupCalc.py``
 ```
 /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions1*/13TeV/PileUp/UltraLegacy/PileupHistogram-goldenJSON-13tev***/*.root
 ```
+### To Make HLT Efficencies Maps:
+```bash
+cmsrel CMSSW_10_6_8
+cd CMSSW_10_6_8/src
+cmsenv
+git clone git@github.com:kjaffel/egm_tnp_analysis.git
+cd egm_tnp_analysis
+make 
+```
+
 ### Trouble shooting:
 1. There was an update in scram to prevent executing arbitrary code in makefile fragments, [see details](https://indico.cern.ch/event/1058840/contributions/4450329/attachments/2281171/3875942/CMSSDT-CoreSW-210713.pdf). 
 
